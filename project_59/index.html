@@ -1,0 +1,70 @@
+<html>
+<!-- <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables.css"> -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+<!-- <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css"> -->
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+
+
+<body>
+
+   <h2 align="center"> Medical Named Entity Recognition </h2>
+   <hr>
+
+   <br>
+   <h4 align="center"> Choose the PDF: </h4>
+   <form action = "http://localhost:5000/" method = "POST" enctype = "multipart/form-data" align="center">
+   <input type = "file" name = "file"/>
+   <br>
+   <br>
+   <input type = "submit"/>
+</form>
+<hr>
+
+<br>
+<h4 align="center"> Output for: {{ Nerdata_Final }} </h4>
+<br>
+
+<table id="table_id", class="display">
+ <thead>
+
+  <tr>
+   {% for col in column_names %}
+   <th>
+
+    {{col}}
+
+ </th>
+ {% endfor %}
+</tr>
+
+</thead>
+<tbody>
+  {% for row in row_data %}
+  <tr>
+   {% for col, row_ in zip(column_names, row) %}
+   <td>{{row_}}</td>
+   {% endfor %}
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</body>
+</html>
+
+<script>
+   $(document).ready( function () {
+     $('#table_id').DataTable({
+      "iDisplayLength": 10,
+   });
+  } );
+</script>
+
+<style type="text/css">
+   #table_id{
+
+     td, th {
+       vertical-align: middle;
+    }
+ }
+</style>
